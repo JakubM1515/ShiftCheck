@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shift_check/models/shift.dart';
-import 'package:shift_check/widgets/add_shift.dart';
+import 'package:shift_check/widgets/add_or_edit_shift.dart';
 import 'package:shift_check/widgets/nav_drawer.dart';
 
 import '../providers/shifts_provider.dart';
@@ -84,7 +84,7 @@ class MainPage extends ConsumerWidget {
       builder: (context) => Padding(
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: const AddShift(),
+        child: const AddOrEditShift(),
       ),
     );
   }

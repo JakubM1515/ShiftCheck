@@ -6,15 +6,15 @@ import 'package:shift_check/constants/constants.dart';
 import 'package:shift_check/models/shift.dart';
 import 'package:shift_check/providers/shifts_provider.dart';
 
-class AddShift extends ConsumerStatefulWidget {
+class AddOrEditShift extends ConsumerStatefulWidget {
   final Shift? shift;
-  const AddShift({super.key, this.shift});
+  const AddOrEditShift({super.key, this.shift});
 
   @override
-  ConsumerState<AddShift> createState() => _AddShiftState();
+  ConsumerState<AddOrEditShift> createState() => _AddOrEditShiftState();
 }
 
-class _AddShiftState extends ConsumerState<AddShift> {
+class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
   final _formKey = GlobalKey<FormState>();
   final title = TextEditingController();
   final currency = TextEditingController();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/constants.dart';
 import '../models/shift.dart';
-import 'add_shift.dart';
+import 'add_or_edit_shift.dart';
 
 class ShiftCard extends StatelessWidget {
   const ShiftCard({
@@ -25,7 +25,7 @@ class ShiftCard extends StatelessWidget {
         builder: (context) => Padding(
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: AddShift(
+          child: AddOrEditShift(
             shift: shift,
           ),
         ),
