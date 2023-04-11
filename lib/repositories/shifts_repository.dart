@@ -18,17 +18,26 @@ class ShiftsRepository {
     }
   }
 
-  static Future<void> addShift(Shift shift) async{
+  static Future<void> addShift(Shift shift) async {
     final docUser = FirebaseFirestore.instance.collection('shifts').doc();
     shift = shift.copyWith(id: docUser.id);
     final json = shift.toMap();
     await docUser.set(json);
   }
 
+  static Future<void> updateShift(Shift shift) async {
+    try {
+      final doc = FirebaseFirestore.instance.collection('shifts').doc(shift.id);
+
+      doc.update(shift.toMap());
+    } catch (e) {
+      throw Exception();
+    }
+  }
+
   static Future<void> deleteShift(Shift shift) async {
     try {
-      final doc =
-          FirebaseFirestore.instance.collection('shifts').doc(shift.id);
+      final doc = FirebaseFirestore.instance.collection('shifts').doc(shift.id);
       doc.delete();
     } catch (e) {
       throw Exception();

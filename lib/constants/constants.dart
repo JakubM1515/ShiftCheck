@@ -4,11 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:intl/intl.dart';
 
-var timeFormat = DateFormat('H:mm');
-var dateFormat = DateFormat('yyyy-MM-dd');
-var currencyKey = '_kCurrency';
-var salaryKey = '_kSalary';
-var darkModeKey = '_kDarkMode';
+DateFormat timeFormat = DateFormat('H:mm');
+DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+String currencyKey = '_kCurrency';
+String salaryKey = '_kSalary';
+String darkModeKey = '_kDarkMode';
 
 double roundDouble(double val, int places) {
   num mod = pow(10.0, places);
