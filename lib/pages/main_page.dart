@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shift_check/models/shift.dart';
+import 'package:shift_check/utils/loading_screen.dart';
 import 'package:shift_check/utils/utils.dart';
 import 'package:shift_check/widgets/add_or_edit_shift.dart';
 import 'package:shift_check/widgets/on_error_widget.dart';
@@ -45,33 +46,41 @@ class MainPage extends ConsumerWidget {
         direction: DismissDirection.endToStart,
         key: Key(shift.id.toString()),
         onDismissed: (_) async {
+          LoadingScreen(context).startLoading();
           try {
             await ref.read(shiftsProvider.notifier).removeShift(shift).then(
-                  (_) => ScaffoldMessenger.of(context)
-                    ..removeCurrentSnackBar()
-                    ..showSnackBar(
-                      SnackBar(
-                        content: Text('${shift.title} Deleted'),
-                        action: SnackBarAction(
-                          label: 'UNDO',
-                          onPressed: () async {
-                            try {
-                              await ref
-                                  .read(shiftsProvider.notifier)
-                                  .undoShiftDelete(index, shift)
-                                  .then(
-                                    (_) => Utils().buildSuccessSnackBar(
-                                        context, 'Shift added'),
-                                  );
-                            } catch (e) {
-                              Utils().buildErrorSnackBar(context);
-                            }
-                          },
-                        ),
+              (_) {
+                LoadingScreen(context).stopLoading();
+                ScaffoldMessenger.of(context)
+                  ..removeCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text('${shift.title} Deleted'),
+                      action: SnackBarAction(
+                        label: 'UNDO',
+                        onPressed: () async {
+                          LoadingScreen(context).startLoading();
+                          try {
+                            await ref
+                                .read(shiftsProvider.notifier)
+                                .undoShiftDelete(index, shift)
+                                .then(
+                                  (_) => Utils().buildSuccessSnackBar(
+                                      context, 'Shift added'),
+                                );
+                          } catch (e) {
+                            Utils().buildErrorSnackBar(context);
+                          } finally {
+                            LoadingScreen(context).stopLoading();
+                          }
+                        },
                       ),
                     ),
-                );
+                  );
+              },
+            );
           } catch (e) {
+            LoadingScreen(context).stopLoading();
             Utils().buildErrorSnackBar(context);
           }
         },

@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shift_check/constants/constants.dart';
 import 'package:shift_check/models/shift.dart';
 import 'package:shift_check/providers/shifts_provider.dart';
+import 'package:shift_check/utils/loading_screen.dart';
 import 'package:shift_check/utils/utils.dart';
 
 class AddOrEditShift extends ConsumerStatefulWidget {
@@ -117,12 +118,15 @@ class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
                   salary.text.replaceAll(',', '.'),
                 ),
       );
+      LoadingScreen(context).startLoading();
       try {
         await ref.read(shiftsProvider.notifier).addShift(newShift).then(
               (_) => Utils().buildSuccessSnackBar(context, 'Shift added.'),
             );
       } catch (e) {
         Utils().buildErrorSnackBar(context);
+      } finally {
+        LoadingScreen(context).stopLoading();
       }
       if (!mounted) return;
       context.pop();
@@ -155,12 +159,15 @@ class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
             ),
             2),
       );
+      LoadingScreen(context).startLoading();
       try {
         await ref.read(shiftsProvider.notifier).editShift(editedShift).then(
               (_) => Utils().buildSuccessSnackBar(context, 'Shift edited.'),
             );
       } catch (e) {
         Utils().buildErrorSnackBar(context);
+      } finally {
+        LoadingScreen(context).stopLoading();
       }
       if (mounted) {
         context.pop();
