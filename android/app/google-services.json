@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "327299992549",
+    "project_id": "shift-check-app",
+    "storage_bucket": "shift-check-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327299992549:android:ece1f0e3537b40afe37d0c",
+        "android_client_info": {
+          "package_name": "com.example.shift_check"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327299992549-f9k9a6mqmu0komkq9ma0fhpt6k2umi78.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHl3sxBntj5rihkplgdlULWZjMHa06OU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327299992549-f9k9a6mqmu0komkq9ma0fhpt6k2umi78.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
