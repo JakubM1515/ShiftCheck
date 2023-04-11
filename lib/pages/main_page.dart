@@ -6,7 +6,7 @@ import 'package:shift_check/widgets/add_shift.dart';
 import 'package:shift_check/widgets/nav_drawer.dart';
 
 import '../providers/shifts_provider.dart';
-import '../widgets/empty_list.dart';
+import '../widgets/empty_refreshable_list.dart';
 import '../widgets/shift_card.dart';
 
 class MainPage extends ConsumerWidget {
@@ -27,7 +27,7 @@ class MainPage extends ConsumerWidget {
                       return _buildDismissible(shift, ref, context, index);
                     },
                   )
-                : const EmptyList(message: 'No shifts added'),
+                : const EmptyRefreshableList(message: 'No shifts added'),
           ),
         );
       },

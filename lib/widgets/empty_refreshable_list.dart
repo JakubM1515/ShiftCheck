@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class EmptyList extends StatelessWidget {
+class EmptyRefreshableList extends StatelessWidget {
   final String message;
-  const EmptyList({Key? key, required this.message}) : super(key: key);
+  const EmptyRefreshableList({Key? key, required this.message}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
