@@ -1,4 +1,4 @@
-# shift_check
+# Shift Check
 
 A new Flutter project.
 
