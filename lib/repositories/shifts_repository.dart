@@ -13,7 +13,7 @@ class ShiftsRepository {
         shifts.add(Shift.fromMap(data));
       }
       return shifts;
-    } catch (e) {
+    } on FirebaseException catch (e) {
       throw Exception(e);
     }
   }

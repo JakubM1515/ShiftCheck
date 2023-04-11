@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shift_check/models/shift.dart';
 import 'package:shift_check/widgets/add_or_edit_shift.dart';
+import 'package:shift_check/widgets/error_snack_bar.dart';
 import 'package:shift_check/widgets/nav_drawer.dart';
 
 import '../providers/shifts_provider.dart';
@@ -100,9 +101,16 @@ class MainPage extends ConsumerWidget {
         builder: (context, ref, child) {
           final shiftsData = ref.watch(fetchShifts);
           return shiftsData.when(
-              data: (data) => _listOfShifts(),
-              error: (error, stackTrace) => Container(),
-              loading: () => const Center(child: CircularProgressIndicator()));
+            skipLoadingOnRefresh: true,
+            skipError: true,
+            data: (data) => _listOfShifts(),
+            error: (error, stackTrace) => OnErrorWidget(
+              onPressed: () async => await ref.refresh(fetchShifts),
+            ),
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(
