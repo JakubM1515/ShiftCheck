@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shift_check/models/shift.dart';
+import 'package:shift_check/utils/utils.dart';
 import 'package:shift_check/widgets/add_or_edit_shift.dart';
-import 'package:shift_check/widgets/error_snack_bar.dart';
+import 'package:shift_check/widgets/on_error_widget.dart';
 import 'package:shift_check/widgets/nav_drawer.dart';
 
 import '../providers/shifts_provider.dart';
@@ -11,7 +12,8 @@ import '../widgets/empty_refreshable_list.dart';
 import '../widgets/shift_card.dart';
 
 class MainPage extends ConsumerWidget {
-  const MainPage({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  MainPage({super.key});
 
   Widget _listOfShifts() {
     return Consumer(
@@ -42,21 +44,36 @@ class MainPage extends ConsumerWidget {
       child: Dismissible(
         direction: DismissDirection.endToStart,
         key: Key(shift.id.toString()),
-        onDismissed: (_) {
-          ref.read(shiftsProvider.notifier).removeShift(shift);
-          ScaffoldMessenger.of(context)
-            ..removeCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text('${shift.title} Deleted'),
-                action: SnackBarAction(
-                  label: 'UNDO',
-                  onPressed: () => ref
-                      .read(shiftsProvider.notifier)
-                      .undoShiftDelete(index, shift),
-                ),
-              ),
-            );
+        onDismissed: (_) async {
+          try {
+            await ref.read(shiftsProvider.notifier).removeShift(shift).then(
+                  (_) => ScaffoldMessenger.of(context)
+                    ..removeCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(
+                        content: Text('${shift.title} Deleted'),
+                        action: SnackBarAction(
+                          label: 'UNDO',
+                          onPressed: () async {
+                            try {
+                              await ref
+                                  .read(shiftsProvider.notifier)
+                                  .undoShiftDelete(index, shift)
+                                  .then(
+                                    (_) => Utils().buildSuccessSnackBar(
+                                        context, 'Shift added'),
+                                  );
+                            } catch (e) {
+                              Utils().buildErrorSnackBar(context);
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                );
+          } catch (e) {
+            Utils().buildErrorSnackBar(context);
+          }
         },
         background: Container(
           color: Colors.red,
@@ -93,6 +110,7 @@ class MainPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     return Scaffold(
+      key: _scaffoldKey,
       drawer: const NavDrawer(),
       appBar: AppBar(
         title: const Text('Check Your Shifts'),

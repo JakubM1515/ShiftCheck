@@ -35,11 +35,11 @@ class OnErrorWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Oh snap!',
+                        'Ooops...',
                         style: Theme.of(context).textTheme.subtitle2,
                       ),
                       Text(
-                        'Data cannot be loaded from the database. Try again.',
+                        'Cannot load data from database. Try again.',
                         style: Theme.of(context).textTheme.bodySmall,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,

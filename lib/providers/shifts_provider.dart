@@ -19,9 +19,10 @@ final fetchShifts = FutureProvider.autoDispose<List<Shift>>(
 class ShiftsProvider extends StateNotifier<List<Shift>> {
   ShiftsProvider() : super([]);
 
-  void addShift(Shift shift) async {
+  Future<void> addShift(Shift shift) async {
     try {
-      await ShiftsRepository.addShift(shift);
+      var newId = await ShiftsRepository.addShift(shift);
+      shift = shift.copyWith(id: newId);
       await sttg.Settings.setValue(salaryKey, shift.salary.toString());
       state = [...state, shift]
         ..sort(((a, b) => b.startTime.compareTo(a.startTime)));
@@ -30,7 +31,7 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
     }
   }
 
-  void undoShiftDelete(int index, Shift shift) async {
+  Future<void> undoShiftDelete(int index, Shift shift) async {
     try {
       await ShiftsRepository.addShift(shift);
       state = [...state]..insert(index, shift);
@@ -39,9 +40,10 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
     }
   }
 
-  void editShift(Shift shift) async {
+  Future<void> editShift(Shift shift) async {
     try {
-      ShiftsRepository.updateShift(shift);
+      await ShiftsRepository.updateShift(shift);
+
       var index = state.indexWhere((element) => element.id == shift.id);
       state[index] = shift;
       state = List.from(state)
@@ -61,7 +63,7 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
     }
   }
 
-  void removeShift(Shift shift) async {
+  Future<void> removeShift(Shift shift) async {
     try {
       await ShiftsRepository.deleteShift(shift);
       state = state.where((element) => element.id != shift.id).toList();

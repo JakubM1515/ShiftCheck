@@ -61,7 +61,7 @@ final GoRouter _router = GoRouter(
     GoRoute(
       name: 'home',
       path: "/",
-      builder: (context, state) => const MainPage(),
+      builder: (context, state) => MainPage(),
       routes: [
         GoRoute(
           name: 'settings',

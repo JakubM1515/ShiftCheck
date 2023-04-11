@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shift_check/constants/constants.dart';
 import 'package:shift_check/models/shift.dart';
 import 'package:shift_check/providers/shifts_provider.dart';
+import 'package:shift_check/utils/utils.dart';
 
 class AddOrEditShift extends ConsumerStatefulWidget {
   final Shift? shift;
@@ -116,13 +117,19 @@ class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
                   salary.text.replaceAll(',', '.'),
                 ),
       );
-      ref.read(shiftsProvider.notifier).addShift(newShift);
+      try {
+        await ref.read(shiftsProvider.notifier).addShift(newShift).then(
+              (_) => Utils().buildSuccessSnackBar(context, 'Shift added.'),
+            );
+      } catch (e) {
+        Utils().buildErrorSnackBar(context);
+      }
       if (!mounted) return;
       context.pop();
     }
   }
 
-  void editShift() {
+  void editShift() async {
     if (_formKey.currentState!.validate()) {
       final startTime = DateTime(shiftDate.year, shiftDate.month, shiftDate.day,
           shiftStartTime.hour, shiftStartTime.minute);
@@ -148,8 +155,16 @@ class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
             ),
             2),
       );
-      ref.read(shiftsProvider.notifier).editShift(editedShift);
-      context.pop();
+      try {
+        await ref.read(shiftsProvider.notifier).editShift(editedShift).then(
+              (_) => Utils().buildSuccessSnackBar(context, 'Shift edited.'),
+            );
+      } catch (e) {
+        Utils().buildErrorSnackBar(context);
+      }
+      if (mounted) {
+        context.pop();
+      }
     }
   }
 
