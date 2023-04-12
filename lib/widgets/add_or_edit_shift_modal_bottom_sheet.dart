@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shift_check/core/constants/constants.dart';
-import 'package:shift_check/models/shift.dart';
-import 'package:shift_check/providers/shifts_provider.dart';
+import 'package:shift_check/src/core/constants/constants.dart';
+import 'package:shift_check/src/models/shift.dart';
+import 'package:shift_check/src/providers/shifts_provider.dart';
 import 'package:shift_check/widgets/functions/show_snack_bar.dart';
 
-import '../core/functions/functions.dart';
+import '../src/core/functions/functions.dart';
 
 class AddOrEditShiftModalBottomSheet extends ConsumerStatefulWidget {
   final Shift? shift;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../core/constants/constants.dart';
-import '../core/functions/functions.dart';
-import '../models/shift.dart';
+import '../src/core/constants/constants.dart';
+import '../src/core/functions/functions.dart';
+import '../src/models/shift.dart';
 import 'add_or_edit_shift_modal_bottom_sheet.dart';
 
 class ShiftCard extends StatelessWidget {

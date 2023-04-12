@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:intl/intl.dart';
-import 'package:shift_check/core/constants/constants.dart';
-import 'package:shift_check/providers/shifts_provider.dart';
+import 'package:shift_check/src/core/constants/constants.dart';
+import 'package:shift_check/src/providers/shifts_provider.dart';
 
 import '../core/functions/functions.dart';
 import '../models/shift.dart';
