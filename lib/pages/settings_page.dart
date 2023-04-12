@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shift_check/constants/constants.dart';
+
+import '../core/constants/constants.dart';
+import '../core/providers/app_theme_provider.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -34,13 +36,13 @@ class SettingsPage extends StatelessWidget {
           onChange: (val) =>
               ref.read(darkModeProvider.notifier).update((state) => val),
           title: 'Dark Mode',
-          settingKey: darkModeKey,
+          settingKey: Constants.darkModeKey,
           leading: Container(
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Theme.of(context).colorScheme.secondary),
+                color: Theme.of(context).colorScheme.primary),
             child: const Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(8.0),
               child: FaIcon(FontAwesomeIcons.solidMoon, color: Colors.black),
             ),
           ),
@@ -53,7 +55,7 @@ class SettingsPage extends StatelessWidget {
     return Flexible(
       child: TextInputSettingsTile(
         initialValue: 'PLN',
-        settingKey: currencyKey,
+        settingKey: Constants.currencyKey,
         title: 'Currency',
         autovalidateMode: AutovalidateMode.always,
         validator: (value) {
@@ -71,7 +73,7 @@ class SettingsPage extends StatelessWidget {
       child: TextInputSettingsTile(
         initialValue: '22.9',
         keyboardType: TextInputType.number,
-        settingKey: salaryKey,
+        settingKey: Constants.salaryKey,
         autovalidateMode: AutovalidateMode.always,
         title: 'Salary per hour',
         validator: (value) {

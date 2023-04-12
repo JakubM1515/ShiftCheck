@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../constants/constants.dart';
+import '../core/constants/constants.dart';
+import '../core/functions/functions.dart';
 import '../models/shift.dart';
-import 'add_or_edit_shift.dart';
+import 'add_or_edit_shift_modal_bottom_sheet.dart';
 
 class ShiftCard extends StatelessWidget {
   const ShiftCard({
@@ -25,7 +26,7 @@ class ShiftCard extends StatelessWidget {
         builder: (context) => Padding(
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: AddOrEditShift(
+          child: AddOrEditShiftModalBottomSheet(
             shift: shift,
           ),
         ),
@@ -48,7 +49,7 @@ class ShiftCard extends StatelessWidget {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    dateFormat.format(shift.startTime),
+                    Constants.dateFormat.format(shift.startTime),
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic),
@@ -65,11 +66,11 @@ class ShiftCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                          'Start time: ${timeFormat.format(shift.startTime)}'),
+                          'Start time: ${Constants.timeFormat.format(shift.startTime)}'),
                       const SizedBox(
                         height: 10,
                       ),
-                      Text('End time: ${timeFormat.format(shift.endTime)}'),
+                      Text('End time: ${Constants.timeFormat.format(shift.endTime)}'),
                     ],
                   ),
                 ),
@@ -79,12 +80,12 @@ class ShiftCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                          'Total hours: ${roundDoubleToString((shift.endTime.difference(shift.startTime).inMinutes / 60), 2)}'),
+                          'Total hours: ${Functions().roundDoubleToString((shift.endTime.difference(shift.startTime).inMinutes / 60), 2)}'),
                       const SizedBox(
                         height: 10,
                       ),
                       Text(
-                          'Money earned: ${roundDoubleToString(shift.moneyEarned, 2)} ${shift.currency}'),
+                          'Money earned: ${Functions().roundDoubleToString(shift.moneyEarned, 2)} ${shift.currency}'),
                     ],
                   ),
                 ),

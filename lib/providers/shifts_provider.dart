@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart' as sttg;
 import 'package:shift_check/repositories/shifts_repository.dart';
 
-import '../constants/constants.dart';
+import '../core/constants/constants.dart';
 import '../models/shift.dart';
 
 final shiftsProvider =
@@ -21,9 +21,9 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
 
   Future<void> addShift(Shift shift) async {
     try {
-      var newId = await ShiftsRepository.addShift(shift);
+      var newId = ShiftsRepository.addShift(shift);
       shift = shift.copyWith(id: newId);
-      await sttg.Settings.setValue(salaryKey, shift.salary.toString());
+      await sttg.Settings.setValue(Constants.salaryKey, shift.salary.toString());
       state = [...state, shift]
         ..sort(((a, b) => b.startTime.compareTo(a.startTime)));
     } catch (e) {
@@ -31,18 +31,18 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
     }
   }
 
-  Future<void> undoShiftDelete(int index, Shift shift) async {
+  void undoShiftDelete(int index, Shift shift) {
     try {
-      await ShiftsRepository.addShift(shift);
+      ShiftsRepository.addShift(shift);
       state = [...state]..insert(index, shift);
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<void> editShift(Shift shift) async {
+  void editShift(Shift shift) {
     try {
-      await ShiftsRepository.updateShift(shift);
+      ShiftsRepository.updateShift(shift);
 
       var index = state.indexWhere((element) => element.id == shift.id);
       state[index] = shift;
@@ -63,9 +63,9 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
     }
   }
 
-  Future<void> removeShift(Shift shift) async {
+  void removeShift(Shift shift) {
     try {
-      await ShiftsRepository.deleteShift(shift);
+      ShiftsRepository.deleteShift(shift);
       state = state.where((element) => element.id != shift.id).toList();
     } catch (e) {
       rethrow;

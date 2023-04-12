@@ -2,21 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shift_check/constants/constants.dart';
+import 'package:shift_check/core/constants/constants.dart';
 import 'package:shift_check/models/shift.dart';
 import 'package:shift_check/providers/shifts_provider.dart';
-import 'package:shift_check/utils/loading_screen.dart';
-import 'package:shift_check/utils/utils.dart';
+import 'package:shift_check/widgets/functions/show_snack_bar.dart';
 
-class AddOrEditShift extends ConsumerStatefulWidget {
+import '../core/functions/functions.dart';
+
+class AddOrEditShiftModalBottomSheet extends ConsumerStatefulWidget {
   final Shift? shift;
-  const AddOrEditShift({super.key, this.shift});
+  const AddOrEditShiftModalBottomSheet({super.key, this.shift});
 
   @override
-  ConsumerState<AddOrEditShift> createState() => _AddOrEditShiftState();
+  ConsumerState<AddOrEditShiftModalBottomSheet> createState() =>
+      _AddOrEditShiftModalBottomSheetState();
 }
 
-class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
+class _AddOrEditShiftModalBottomSheetState
+    extends ConsumerState<AddOrEditShiftModalBottomSheet> {
   final _formKey = GlobalKey<FormState>();
   final title = TextEditingController();
   final currency = TextEditingController();
@@ -39,20 +42,23 @@ class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
   }
 
   void _initDefeaultData() {
-    endTimeController.text = timeFormat.format(DateTime.now());
-    date.text = dateFormat.format(DateTime.now());
+    endTimeController.text = Constants.timeFormat.format(DateTime.now());
+    date.text = Constants.dateFormat.format(DateTime.now());
     title.text = 'Shift';
-    currency.text = Settings.getValue(currencyKey, defaultValue: 'PLN')!;
-    salary.text = Settings.getValue(salaryKey, defaultValue: 0.toString())!;
+    currency.text =
+        Settings.getValue(Constants.currencyKey, defaultValue: 'PLN')!;
+    salary.text =
+        Settings.getValue(Constants.salaryKey, defaultValue: 0.toString())!;
   }
 
   void _initShiftData() {
     title.text = widget.shift!.title;
     currency.text = widget.shift!.currency;
-    salary.text = roundDoubleToString(widget.shift!.salary, 2);
-    startTimeController.text = timeFormat.format(widget.shift!.startTime);
-    endTimeController.text = timeFormat.format(widget.shift!.endTime);
-    date.text = dateFormat.format(widget.shift!.startTime);
+    salary.text = Functions().roundDoubleToString(widget.shift!.salary, 2);
+    startTimeController.text =
+        Constants.timeFormat.format(widget.shift!.startTime);
+    endTimeController.text = Constants.timeFormat.format(widget.shift!.endTime);
+    date.text = Constants.dateFormat.format(widget.shift!.startTime);
     shiftStartTime = TimeOfDay(
         hour: int.parse(startTimeController.text.split(":")[0]),
         minute: int.parse(startTimeController.text.split(":")[1]));
@@ -71,7 +77,7 @@ class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
     );
     if (pickedDate != null) {
       setState(() {
-        date.text = dateFormat.format(pickedDate);
+        date.text = Constants.dateFormat.format(pickedDate);
         shiftDate = pickedDate;
       });
     }
@@ -99,7 +105,7 @@ class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
       }
       final newShift = Shift(
         id: (ref.read(shiftsProvider).length + 1).toString(),
-        salary: roundDouble(
+        salary: Functions().roundDouble(
             double.parse(
               salary.text.replaceAll(',', '.'),
             ),
@@ -118,15 +124,13 @@ class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
                   salary.text.replaceAll(',', '.'),
                 ),
       );
-      LoadingScreen(context).startLoading();
       try {
         await ref.read(shiftsProvider.notifier).addShift(newShift).then(
-              (_) => Utils().buildSuccessSnackBar(context, 'Shift added.'),
+              (_) =>
+                  ShowSnackBar().buildSuccessSnackBar(context, 'Shift added.'),
             );
       } catch (e) {
-        Utils().buildErrorSnackBar(context);
-      } finally {
-        LoadingScreen(context).stopLoading();
+        ShowSnackBar().buildErrorSnackBar(context);
       }
       if (!mounted) return;
       context.pop();
@@ -153,21 +157,17 @@ class _AddOrEditShiftState extends ConsumerState<AddOrEditShift> {
               salary.text.replaceAll(',', '.'),
             ),
         currency: currency.text,
-        salary: roundDouble(
+        salary: Functions().roundDouble(
             double.parse(
               salary.text.replaceAll(',', '.'),
             ),
             2),
       );
-      LoadingScreen(context).startLoading();
       try {
-        await ref.read(shiftsProvider.notifier).editShift(editedShift).then(
-              (_) => Utils().buildSuccessSnackBar(context, 'Shift edited.'),
-            );
+        ref.read(shiftsProvider.notifier).editShift(editedShift);
+        ShowSnackBar().buildSuccessSnackBar(context, 'Shift edited.');
       } catch (e) {
-        Utils().buildErrorSnackBar(context);
-      } finally {
-        LoadingScreen(context).stopLoading();
+        ShowSnackBar().buildErrorSnackBar(context);
       }
       if (mounted) {
         context.pop();

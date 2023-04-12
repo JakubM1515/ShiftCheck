@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Utils {
+class ShowSnackBar {
   void buildSuccessSnackBar(BuildContext context, String message) {
     ScaffoldMessenger.of(context)
       ..clearSnackBars()

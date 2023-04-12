@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../core/constants/constants.dart';
 import '../models/shift.dart';
 
 class ShiftsRepository {
+
   static Future<List<Shift>> getShifts() async {
     final List<Shift> shifts = [];
     try {
@@ -18,28 +20,28 @@ class ShiftsRepository {
     }
   }
 
-  static Future<String> addShift(Shift shift) async {
-    final docUser = FirebaseFirestore.instance.collection('shifts').doc();
+  static String addShift(Shift shift) {
+    final docUser = FirebaseFirestore.instance.collection(Constants.shiftsCollection).doc();
     shift = shift.copyWith(id: docUser.id);
     final json = shift.toMap();
-    await docUser.set(json);
+    docUser.set(json);
     return docUser.id;
   }
 
-  static Future<void> updateShift(Shift shift) async {
+  static void updateShift(Shift shift) {
     try {
-      final doc = FirebaseFirestore.instance.collection('shifts').doc(shift.id);
+      final doc = FirebaseFirestore.instance.collection(Constants.shiftsCollection).doc(shift.id);
 
-      await doc.update(shift.toMap());
+      doc.update(shift.toMap());
     } catch (e) {
       throw Exception();
     }
   }
 
-  static Future<void> deleteShift(Shift shift) async {
+  static void deleteShift(Shift shift) {
     try {
-      final doc = FirebaseFirestore.instance.collection('shifts').doc(shift.id);
-      await doc.delete();
+      final doc = FirebaseFirestore.instance.collection(Constants.shiftsCollection).doc(shift.id);
+      doc.delete();
     } catch (e) {
       throw Exception();
     }

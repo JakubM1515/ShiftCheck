@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:intl/intl.dart';
-import 'package:shift_check/constants/constants.dart';
+import 'package:shift_check/core/constants/constants.dart';
 import 'package:shift_check/providers/shifts_provider.dart';
 
+import '../core/functions/functions.dart';
 import '../models/shift.dart';
 
 class StatisticsPage extends ConsumerStatefulWidget {
@@ -97,7 +98,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
-            '${roundDoubleToString(totalHours, 2)} h',
+            '${Functions().roundDoubleToString(totalHours, 2)} h',
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
@@ -120,7 +121,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
-            '${roundDoubleToString(totalMoney, 2)} ${Settings.getValue(currencyKey, defaultValue: 'PLN')}',
+            '${Functions().roundDoubleToString(totalMoney, 2)} ${Settings.getValue(Constants.currencyKey, defaultValue: 'PLN')}',
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
@@ -143,7 +144,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
-            '${roundDoubleToString(meanShiftTime, 2)} h',
+            '${Functions().roundDoubleToString(meanShiftTime, 2)} h',
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
