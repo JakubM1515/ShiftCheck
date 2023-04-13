@@ -1,12 +1,12 @@
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
+import 'package:shift_check/src/shared/models/shift.dart';
 
 import '../../../../core/constants/constants.dart';
-import '../../../../shared/models/shift.dart';
 import '../repositories/shifts_repository.dart';
 
-class AddShiftUseCase {
+class ShiftUseCase {
   final ShiftsRepository _shiftsRepository;
-  AddShiftUseCase(this._shiftsRepository);
+  ShiftUseCase(this._shiftsRepository);
 
   Future<Shift> addShift(Shift shift) async {
     var newId = _shiftsRepository.addShift(shift: shift);
@@ -17,5 +17,21 @@ class AddShiftUseCase {
     );
 
     return shift;
+  }
+
+  void deleteShift(Shift shift) {
+    _shiftsRepository.deleteShift(shift: shift);
+  }
+
+  Future<List<Shift>> getShifts() async {
+    try {
+      return _shiftsRepository.getShifts();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  void editShift(Shift shift) {
+    _shiftsRepository.updateShift(shift: shift);
   }
 }
