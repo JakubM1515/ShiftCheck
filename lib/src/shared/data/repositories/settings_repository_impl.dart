@@ -11,12 +11,12 @@ class SettingsRepositoryImpl extends SettingsRepository {
   }
 
   @override
-  double getSalary() {
+  String getSalary() {
     return _localDataSource.getSalary();
   }
 
   @override
-  void setSalary(double salary) {
+  void setSalary(String salary) {
     _localDataSource.saveSalary(salary);
   }
 }

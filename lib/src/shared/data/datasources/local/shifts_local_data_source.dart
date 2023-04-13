@@ -1,5 +1,5 @@
 abstract class SettingsLocalDataSource {
-  void saveSalary(double salary);
-  double getSalary();
+  void saveSalary(String salary);
+  String getSalary();
   String getCurrency();
 }

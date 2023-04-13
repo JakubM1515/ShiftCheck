@@ -19,7 +19,7 @@ class ShiftsRepositoryImpl extends ShiftsRepository {
   @override
   String addShift({required Shift shift}) {
     try {
-      shiftsLocalDataSource.saveSalary(shift.salary);
+      shiftsLocalDataSource.saveSalary(shift.salary.toString());
       return shiftsDataSource.addShift(shift: shift);
     } catch (e) {
       rethrow;

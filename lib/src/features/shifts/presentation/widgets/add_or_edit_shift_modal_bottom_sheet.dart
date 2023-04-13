@@ -47,7 +47,7 @@ class _AddOrEditShiftModalBottomSheetState
     date.text = Constants.dateFormat.format(DateTime.now());
     title.text = 'Shift';
     currency.text = ref.read(settingsUseCase).getCurrency();
-    salary.text = ref.read(settingsUseCase).getSalary().toString();
+    salary.text = ref.read(settingsUseCase).getSalary();
   }
 
   void _initShiftData() {
@@ -72,10 +72,8 @@ class _AddOrEditShiftModalBottomSheetState
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: currentDate,
-      // firstDate: DateTime(currentDate.year, currentDate.month, 1),
-      // lastDate: DateTime(currentDate.year, currentDate.month + 1, 0),
-      firstDate: DateTime(2001),
-      lastDate: DateTime(2101),
+      firstDate: DateTime(currentDate.year, currentDate.month, 1),
+      lastDate: DateTime(currentDate.year, currentDate.month + 1, 0),
     );
     if (pickedDate != null) {
       setState(() {
@@ -128,6 +126,7 @@ class _AddOrEditShiftModalBottomSheetState
       );
       try {
         ref.read(shiftUseCase).addShift(newShift);
+        ref.read(settingsUseCase).setSalary(salary.text);
         ShowSnackBar().buildSuccessSnackBar(context, 'Shift added.');
       } catch (e) {
         ShowSnackBar().buildErrorSnackBar(context);

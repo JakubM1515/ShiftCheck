@@ -4,15 +4,14 @@ import 'package:shift_check/src/shared/data/datasources/local/shifts_local_data_
 
 class SettingsLocalDataSourceImpl extends SettingsLocalDataSource {
   @override
-  double getSalary() {
-    double value =
-        Settings.getValue(Constants.salaryKey, defaultValue: 0) ??
-            0;
+  String getSalary() {
+    String value =
+        Settings.getValue(Constants.salaryKey, defaultValue: "0") ?? "0";
     return value;
   }
 
   @override
-  void saveSalary(double salary) {
+  void saveSalary(String salary) {
     Settings.setValue(Constants.salaryKey, salary);
   }
 

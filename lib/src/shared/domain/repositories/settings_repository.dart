@@ -1,5 +1,5 @@
 abstract class SettingsRepository {
-  void setSalary(double salary);
-  double getSalary();
+  void setSalary(String salary);
+  String getSalary();
   String getCurrency();
 }

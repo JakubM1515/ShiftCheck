@@ -16,44 +16,7 @@ class StatisticsPage extends ConsumerStatefulWidget {
 }
 
 class _StatisticsPageState extends ConsumerState<StatisticsPage> {
-  double calcTotalHours(List<Shift> shifts) {
-    if (shifts.isNotEmpty) {
-      double sum = 0;
-      for (var shift in shifts) {
-        sum += (shift.endTime.difference(shift.startTime).inMinutes) / 60;
-      }
 
-      return sum;
-    } else {
-      return 0;
-    }
-  }
-
-  double calcMeanShifTime(List<Shift> shifts) {
-    if (shifts.isNotEmpty) {
-      double sum = 0;
-      for (var shift in shifts) {
-        sum += (shift.endTime.difference(shift.startTime).inMinutes) / 60;
-      }
-
-      return sum / shifts.length;
-    } else {
-      return 0;
-    }
-  }
-
-  double calcTotalMoney(List<Shift> shifts) {
-    if (shifts.isNotEmpty) {
-      double sum = 0;
-      for (var shift in shifts) {
-        sum += shift.moneyEarned;
-      }
-
-      return sum;
-    } else {
-      return 0;
-    }
-  }
 
   Padding _buildTitle(BuildContext context) {
     return Padding(
@@ -87,7 +50,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
   }
 
   Padding _buildTotalHours(BuildContext context, List<Shift> shifts) {
-    var totalHours = calcTotalHours(shifts);
+    var totalHours = Functions().calcTotalHours(shifts);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
@@ -110,7 +73,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
   }
 
   Padding _buildMoneyEarned(BuildContext context, List<Shift> shifts) {
-    var totalMoney = calcTotalMoney(shifts);
+    var totalMoney = Functions().calcTotalMoney(shifts);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
@@ -133,7 +96,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
   }
 
   Padding _buildMeanShiftTime(BuildContext context, List<Shift> shifts) {
-    var meanShiftTime = calcMeanShifTime(shifts);
+    var meanShiftTime = Functions().calcMeanShifTime(shifts);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),

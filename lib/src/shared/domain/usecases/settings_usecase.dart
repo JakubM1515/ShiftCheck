@@ -8,11 +8,11 @@ class SettingsUseCase {
   final Ref _ref;
   final SettingsRepository _repo;
 
-  void setSalary(double salary) {
+  void setSalary(String salary) {
     _repo.setSalary(salary);
   }
 
-  double getSalary() {
+  String getSalary() {
     return _repo.getSalary();
   }
 
