@@ -45,7 +45,7 @@ class MainPage extends ConsumerWidget {
       child: Dismissible(
         direction: DismissDirection.endToStart,
         key: Key(shift.id.toString()),
-        onDismissed: (_) async {
+        onDismissed: (_) {
           try {
             ref.read(shiftUseCase).deleteShift(shift);
             ScaffoldMessenger.of(context)
@@ -55,11 +55,11 @@ class MainPage extends ConsumerWidget {
                   content: Text('${shift.title} Deleted'),
                   action: SnackBarAction(
                     label: 'UNDO',
-                    onPressed: () async {
+                    onPressed: () {
                       try {
                         ref.read(shiftUseCase).undoShiftDelete(index, shift);
                         ShowSnackBar()
-                            .buildSuccessSnackBar(context, 'Shift added');
+                            .buildSuccessSnackBar(_scaffoldKey.currentState!.context, 'Shift added');
                       } catch (e) {
                         ShowSnackBar().buildErrorSnackBar(context);
                       }
