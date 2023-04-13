@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shift_check/src/features/shifts/domain/usecases/shift_use_case.dart';
 import 'package:shift_check/src/shared/models/shift.dart';
 import 'package:shift_check/src/shared/widgets/functions/show_snack_bar.dart';
 import 'package:shift_check/src/features/shifts/presentation/widgets/add_or_edit_shift_modal_bottom_sheet.dart';
@@ -46,7 +47,7 @@ class MainPage extends ConsumerWidget {
         key: Key(shift.id.toString()),
         onDismissed: (_) async {
           try {
-            ref.read(shiftsProvider.notifier).removeShift(shift);
+            ref.read(shiftUseCase).deleteShift(shift);
             ScaffoldMessenger.of(context)
               ..removeCurrentSnackBar()
               ..showSnackBar(
@@ -56,14 +57,12 @@ class MainPage extends ConsumerWidget {
                     label: 'UNDO',
                     onPressed: () async {
                       try {
-                        ref
-                            .read(shiftsProvider.notifier)
-                            .undoShiftDelete(index, shift);
-                        ShowSnackBar().buildSuccessSnackBar(context, 'Shift added');
+                        ref.read(shiftUseCase).undoShiftDelete(index, shift);
+                        ShowSnackBar()
+                            .buildSuccessSnackBar(context, 'Shift added');
                       } catch (e) {
                         ShowSnackBar().buildErrorSnackBar(context);
-                      } 
-                      
+                      }
                     },
                   ),
                 ),
