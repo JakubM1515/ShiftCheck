@@ -7,6 +7,7 @@ App allows to track your work shifts. You can add them, edit or delete. User can
 - Firebase
 - SharedPreferences
 - GoRouter
+- Clean Architecture
 
 ## IN DEVELOPMENT
 
