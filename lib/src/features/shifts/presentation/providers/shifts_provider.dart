@@ -1,13 +1,20 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_settings_screens/flutter_settings_screens.dart' as sttg;
-import 'package:shift_check/src/features/shifts/data/datasources/shifts_repository.dart';
+import 'package:shift_check/src/features/shifts/data/datasources/firebase_shifts_datasource.dart';
+import 'package:shift_check/src/features/shifts/data/repositories/shifts_repository_impl.dart';
+import 'package:shift_check/src/features/shifts/domain/repositories/shifts_repository.dart';
+import 'package:shift_check/src/features/shifts/domain/usecases/add_shift_usecase.dart';
+import 'package:shift_check/src/features/shifts/domain/usecases/edit_shift_usecase.dart';
+import 'package:shift_check/src/features/shifts/domain/usecases/get_shifts_usecase.dart';
+import 'package:shift_check/src/features/shifts/domain/usecases/remove_shift_usecase.dart';
 
-import '../../../../core/constants/constants.dart';
 import '../../../../shared/models/shift.dart';
 
 final shiftsProvider =
-    StateNotifierProvider.autoDispose<ShiftsProvider, List<Shift>>(
-        (ref) => ShiftsProvider());
+    StateNotifierProvider.autoDispose<ShiftsProvider, List<Shift>>((ref) {
+  var dataSource = FirebaseShiftsDatasource();
+  var repo = ShiftsRepositoryImpl(dataSource);
+  return ShiftsProvider(repo);
+});
 
 final fetchShifts = FutureProvider.autoDispose<List<Shift>>(
   (ref) {
@@ -17,13 +24,12 @@ final fetchShifts = FutureProvider.autoDispose<List<Shift>>(
 );
 
 class ShiftsProvider extends StateNotifier<List<Shift>> {
-  ShiftsProvider() : super([]);
+  final ShiftsRepository shiftsRepository;
+  ShiftsProvider(this.shiftsRepository) : super([]);
 
   Future<void> addShift(Shift shift) async {
     try {
-      var newId = ShiftsRepository.addShift(shift);
-      shift = shift.copyWith(id: newId);
-      await sttg.Settings.setValue(Constants.salaryKey, shift.salary.toString());
+      shift = await AddShiftUseCase(shiftsRepository).addShift(shift);
       state = [...state, shift]
         ..sort(((a, b) => b.startTime.compareTo(a.startTime)));
     } catch (e) {
@@ -33,7 +39,7 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
 
   void undoShiftDelete(int index, Shift shift) {
     try {
-      ShiftsRepository.addShift(shift);
+      AddShiftUseCase(shiftsRepository).addShift(shift);
       state = [...state]..insert(index, shift);
     } catch (e) {
       rethrow;
@@ -42,8 +48,7 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
 
   void editShift(Shift shift) {
     try {
-      ShiftsRepository.updateShift(shift);
-
+      EditShiftUseCase(shiftsRepository).editShift(shift);
       var index = state.indexWhere((element) => element.id == shift.id);
       state[index] = shift;
       state = List.from(state)
@@ -55,9 +60,8 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
 
   Future<List<Shift>> getShifts() async {
     try {
-      final shifts = await ShiftsRepository.getShifts();
-      state = shifts;
-      return shifts..sort(((a, b) => b.startTime.compareTo(a.startTime)));
+      state = await GetShiftsUseCase(shiftsRepository).getShifts();
+      return state..sort(((a, b) => b.startTime.compareTo(a.startTime)));
     } catch (e) {
       rethrow;
     }
@@ -65,7 +69,7 @@ class ShiftsProvider extends StateNotifier<List<Shift>> {
 
   void removeShift(Shift shift) {
     try {
-      ShiftsRepository.deleteShift(shift);
+      RemoveShiftUseCase(shiftsRepository).deleteShift(shift);
       state = state.where((element) => element.id != shift.id).toList();
     } catch (e) {
       rethrow;
