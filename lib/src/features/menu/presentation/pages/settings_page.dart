@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shift_check/src/shared/domain/module/settings_provider.dart';
 
 import '../../../../core/constants/constants.dart';
-import '../../../../core/providers/app_theme_provider.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -33,8 +33,7 @@ class SettingsPage extends StatelessWidget {
     return Flexible(
       child: Consumer(
         builder: (context, ref, child) => SwitchSettingsTile(
-          onChange: (val) =>
-              ref.read(darkModeProvider.notifier).update((state) => val),
+          onChange: (val) => ref.read(settingsUseCase).changeTheme(val),
           title: 'Dark Mode',
           settingKey: Constants.darkModeKey,
           leading: Container(

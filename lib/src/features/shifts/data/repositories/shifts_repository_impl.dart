@@ -1,11 +1,13 @@
 
+import '../../../../shared/data/datasources/local/shifts_local_data_source.dart';
 import '../../../../shared/models/shift.dart';
 import '../../domain/repositories/shifts_repository.dart';
-import '../datasources/shifts_datasource.dart';
+import '../datasources/remote/shifts_datasource.dart';
 
 class ShiftsRepositoryImpl extends ShiftsRepository {
   final ShiftsDataSource shiftsDataSource;
-  ShiftsRepositoryImpl(this.shiftsDataSource);
+  final SettingsLocalDataSource shiftsLocalDataSource;
+  ShiftsRepositoryImpl(this.shiftsDataSource, this.shiftsLocalDataSource);
   @override
   Future<List<Shift>> getShifts() async {
     try {
@@ -18,6 +20,7 @@ class ShiftsRepositoryImpl extends ShiftsRepository {
   @override
   String addShift({required Shift shift}) {
     try {
+      shiftsLocalDataSource.saveSalary(shift.salary);
       return shiftsDataSource.addShift(shift: shift);
     } catch (e) {
       rethrow;
