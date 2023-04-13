@@ -1,18 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
-import 'package:shift_check/src/features/shifts/presentation/providers/shifts_provider.dart';
-import 'package:shift_check/src/shared/models/shift.dart';
 
 import '../../../../core/constants/constants.dart';
-import '../../data/datasources/firebase_shifts_datasource.dart';
-import '../../data/repositories/shifts_repository_impl.dart';
+import '../../../../shared/models/shift.dart';
+import '../../presentation/providers/shifts_provider.dart';
 import '../repositories/shifts_repository.dart';
 
-final shiftUseCase = Provider.autoDispose((ref) {
-  var dataSource = FirebaseShiftsDatasource();
-  var repo = ShiftsRepositoryImpl(dataSource);
-  return ShiftUseCase(repo, ref);
-});
+
 
 class ShiftUseCase {
   final ShiftsRepository _shiftsRepository;

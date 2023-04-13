@@ -3,12 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shift_check/src/core/constants/constants.dart';
-import 'package:shift_check/src/features/shifts/domain/usecases/shift_use_case.dart';
 import 'package:shift_check/src/shared/models/shift.dart';
 import 'package:shift_check/src/features/shifts/presentation/providers/shifts_provider.dart';
 import 'package:shift_check/src/shared/widgets/functions/show_snack_bar.dart';
 
 import '../../../../core/functions/functions.dart';
+import '../../domain/providers/shift_provider.dart';
 
 class AddOrEditShiftModalBottomSheet extends ConsumerStatefulWidget {
   final Shift? shift;

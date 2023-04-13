@@ -1,7 +1,7 @@
-import 'package:shift_check/src/features/shifts/data/datasources/shifts_datasource.dart';
-import 'package:shift_check/src/features/shifts/domain/repositories/shifts_repository.dart';
 
 import '../../../../shared/models/shift.dart';
+import '../../domain/repositories/shifts_repository.dart';
+import '../datasources/shifts_datasource.dart';
 
 class ShiftsRepositoryImpl extends ShiftsRepository {
   final ShiftsDataSource shiftsDataSource;

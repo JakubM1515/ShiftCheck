@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shift_check/src/features/shifts/domain/usecases/shift_use_case.dart';
 import 'package:shift_check/src/shared/models/shift.dart';
 import 'package:shift_check/src/shared/widgets/functions/show_snack_bar.dart';
 import 'package:shift_check/src/features/shifts/presentation/widgets/add_or_edit_shift_modal_bottom_sheet.dart';
 import 'package:shift_check/src/shared/widgets/on_error_widget.dart';
 import 'package:shift_check/src/features/menu/presentation/widgets/nav_drawer.dart';
 
+import '../../domain/providers/shift_provider.dart';
 import '../providers/shifts_provider.dart';
 import '../../../../shared/widgets/empty_refreshable_list.dart';
 import '../widgets/shift_card.dart';
