@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shift_check/src/models/shift.dart';
-import 'package:shift_check/widgets/functions/show_snack_bar.dart';
-import 'package:shift_check/widgets/add_or_edit_shift_modal_bottom_sheet.dart';
-import 'package:shift_check/widgets/on_error_widget.dart';
-import 'package:shift_check/widgets/nav_drawer.dart';
+import 'package:shift_check/src/widgets/functions/show_snack_bar.dart';
+import 'package:shift_check/src/widgets/add_or_edit_shift_modal_bottom_sheet.dart';
+import 'package:shift_check/src/widgets/on_error_widget.dart';
+import 'package:shift_check/src/widgets/nav_drawer.dart';
 
 import '../providers/shifts_provider.dart';
-import '../../widgets/empty_refreshable_list.dart';
-import '../../widgets/shift_card.dart';
+import '../widgets/empty_refreshable_list.dart';
+import '../widgets/shift_card.dart';
 
 class MainPage extends ConsumerWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
