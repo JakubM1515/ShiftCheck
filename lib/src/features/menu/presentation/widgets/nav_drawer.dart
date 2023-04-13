@@ -30,14 +30,14 @@ class NavDrawer extends StatelessWidget {
             leading: const FaIcon(FontAwesomeIcons.chartSimple),
             title: const Text('Statistics'),
             onTap: () {
-              context.pushNamed('statistics');
+              context.goNamed('statistics');
             },
           ),
           ListTile(
             leading: const FaIcon(FontAwesomeIcons.clockRotateLeft),
             title: const Text('History'),
             onTap: () {
-              context.pushNamed('history');
+              context.goNamed('history');
             },
           ),
           const Divider(),
@@ -45,7 +45,7 @@ class NavDrawer extends StatelessWidget {
             leading: const FaIcon(FontAwesomeIcons.gear),
             title: const Text('Settings'),
             onTap: () {
-              context.pushNamed('settings');
+              context.goNamed('settings');
             },
           ),
           const AboutListTile(

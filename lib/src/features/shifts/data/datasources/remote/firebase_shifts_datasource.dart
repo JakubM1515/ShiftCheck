@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:shift_check/src/features/shifts/data/datasources/remote/shifts_datasource.dart';
 
 import '../../../../../core/constants/constants.dart';
@@ -80,7 +79,8 @@ class FirebaseShiftsDatasource extends ShiftsDataSource {
             isGreaterThanOrEqualTo:
                 DateTime(date.year, date.month - 1, 1).toIso8601String(),
             isLessThan: DateTime(date.year, date.month, 1).toIso8601String(),
-          );
+          )
+          .orderBy("startTime", descending: true);
       var querySnapshot = await collection.get();
       for (var element in querySnapshot.docs) {
         Map<String, dynamic> data = element.data();

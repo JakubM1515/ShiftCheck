@@ -10,7 +10,7 @@ import 'package:shift_check/src/features/menu/presentation/widgets/nav_drawer.da
 import '../../domain/module/shift_provider.dart';
 import '../providers/shifts_provider.dart';
 import '../../../../shared/widgets/empty_refreshable_list.dart';
-import '../widgets/shift_card.dart';
+import '../../../../shared/widgets/shift_card.dart';
 
 class MainPage extends ConsumerWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();

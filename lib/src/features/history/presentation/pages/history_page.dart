@@ -31,7 +31,7 @@ class HistoryPage extends ConsumerWidget {
               padding: const EdgeInsets.only(top: 8.0),
               child: ListTile(
                 onTap: () =>
-                    context.pushNamed('history-detail', extra: summaries[index]),
+                    context.goNamed('history-detail', extra: summaries[index]),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shift_check/src/features/history/domain/models/month_summary.dart';
-import 'package:shift_check/src/features/shifts/presentation/widgets/shift_card.dart';
+import 'package:shift_check/src/shared/widgets/shift_card.dart';
 
 class HistoryDetailPage extends StatelessWidget {
   final MonthSummary summary;
