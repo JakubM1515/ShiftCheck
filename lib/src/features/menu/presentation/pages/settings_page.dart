@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../core/constants/constants.dart';
-import '../core/providers/app_theme_provider.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/providers/app_theme_provider.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

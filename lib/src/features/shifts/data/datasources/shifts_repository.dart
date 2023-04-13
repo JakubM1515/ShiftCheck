@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../core/constants/constants.dart';
-import '../models/shift.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../shared/models/shift.dart';
 
 class ShiftsRepository {
 

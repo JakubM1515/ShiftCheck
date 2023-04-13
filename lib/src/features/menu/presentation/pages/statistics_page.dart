@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:intl/intl.dart';
 import 'package:shift_check/src/core/constants/constants.dart';
-import 'package:shift_check/src/providers/shifts_provider.dart';
+import 'package:shift_check/src/features/shifts/presentation/providers/shifts_provider.dart';
 
-import '../core/functions/functions.dart';
-import '../models/shift.dart';
+import '../../../../core/functions/functions.dart';
+import '../../../../shared/models/shift.dart';
 
 class StatisticsPage extends ConsumerStatefulWidget {
   const StatisticsPage({super.key});

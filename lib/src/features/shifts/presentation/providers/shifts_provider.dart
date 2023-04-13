@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart' as sttg;
-import 'package:shift_check/src/repositories/shifts_repository.dart';
+import 'package:shift_check/src/features/shifts/data/datasources/shifts_repository.dart';
 
-import '../core/constants/constants.dart';
-import '../models/shift.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../shared/models/shift.dart';
 
 final shiftsProvider =
     StateNotifierProvider.autoDispose<ShiftsProvider, List<Shift>>(
