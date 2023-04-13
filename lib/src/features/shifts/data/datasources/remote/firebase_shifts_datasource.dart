@@ -5,12 +5,14 @@ import '../../../../../core/constants/constants.dart';
 import '../../../../../shared/models/shift.dart';
 
 class FirebaseShiftsDatasource extends ShiftsDataSource {
+  final shiftsCollection = Constants.shiftsCollection;
 
   @override
   Future<List<Shift>> getShifts() async {
     final List<Shift> shifts = [];
     try {
-      var collection = FirebaseFirestore.instance.collection('shifts');
+      var collection =
+          FirebaseFirestore.instance.collection(shiftsCollection);
       var querySnapshot = await collection.get();
       for (var element in querySnapshot.docs) {
         Map<String, dynamic> data = element.data();
@@ -25,7 +27,7 @@ class FirebaseShiftsDatasource extends ShiftsDataSource {
   @override
   String addShift({required Shift shift}) {
     final docUser =
-        FirebaseFirestore.instance.collection(Constants.shiftsCollection).doc();
+        FirebaseFirestore.instance.collection(shiftsCollection).doc();
     shift = shift.copyWith(id: docUser.id);
     final json = shift.toMap();
     docUser.set(json);
@@ -36,7 +38,7 @@ class FirebaseShiftsDatasource extends ShiftsDataSource {
   void updateShift({required Shift shift}) {
     try {
       final doc = FirebaseFirestore.instance
-          .collection(Constants.shiftsCollection)
+          .collection(shiftsCollection)
           .doc(shift.id);
 
       doc.update(shift.toMap());
@@ -49,7 +51,7 @@ class FirebaseShiftsDatasource extends ShiftsDataSource {
   void deleteShift({required Shift shift}) {
     try {
       final doc = FirebaseFirestore.instance
-          .collection(Constants.shiftsCollection)
+          .collection(shiftsCollection)
           .doc(shift.id);
       doc.delete();
     } catch (e) {

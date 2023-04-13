@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../../features/history/presentation/pages/history_page.dart';
 import '../../features/shifts/presentation/pages/main_page.dart';
 import '../../features/menu/presentation/pages/settings_page.dart';
 import '../../features/menu/presentation/pages/statistics_page.dart';
@@ -24,7 +25,12 @@ class AppRouter {
             name: 'statistics',
             path: 'statistics',
             builder: (context, state) => const StatisticsPage(),
-          )
+          ),
+          GoRoute(
+            name: 'history',
+            path: 'history',
+            builder: (context, state) => const HistoryPage(),
+          ),
         ],
       )
     ],

@@ -10,4 +10,5 @@ class Constants {
   static const String darkModeKey = '_kDarkMode';
   // Firebase collections
   static const String shiftsCollection = 'shifts';
+  static const String monthSummariesCollection = 'summaries';
 }
