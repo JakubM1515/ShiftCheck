@@ -8,7 +8,7 @@ import 'package:shift_check/src/features/shifts/presentation/providers/shifts_pr
 import 'package:shift_check/src/shared/widgets/functions/show_snack_bar.dart';
 
 import '../../../../core/functions/functions.dart';
-import '../../domain/providers/shift_provider.dart';
+import '../../domain/module/shift_provider.dart';
 
 class AddOrEditShiftModalBottomSheet extends ConsumerStatefulWidget {
   final Shift? shift;

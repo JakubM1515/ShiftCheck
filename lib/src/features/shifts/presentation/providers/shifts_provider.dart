@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../shared/models/shift.dart';
-import '../../domain/providers/shift_provider.dart';
+import '../../domain/module/shift_provider.dart';
 
 final shiftsProvider =
     StateNotifierProvider.autoDispose<ShiftsProvider, List<Shift>>((ref) {

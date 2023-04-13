@@ -7,7 +7,7 @@ import 'package:shift_check/src/features/shifts/presentation/widgets/add_or_edit
 import 'package:shift_check/src/shared/widgets/on_error_widget.dart';
 import 'package:shift_check/src/features/menu/presentation/widgets/nav_drawer.dart';
 
-import '../../domain/providers/shift_provider.dart';
+import '../../domain/module/shift_provider.dart';
 import '../providers/shifts_provider.dart';
 import '../../../../shared/widgets/empty_refreshable_list.dart';
 import '../widgets/shift_card.dart';
