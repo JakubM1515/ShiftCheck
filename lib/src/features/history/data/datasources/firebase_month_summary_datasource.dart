@@ -24,4 +24,12 @@ class FirebaseMonthSummaryDataSource extends MonthSummaryDataSource {
       throw Exception(e);
     }
   }
+
+  @override
+  void sentMonthSummary(MonthSummary summary) {
+    final docUser =
+        FirebaseFirestore.instance.collection(summariesCollection).doc();
+    final json = summary.toMap();
+    docUser.set(json);
+  }
 }

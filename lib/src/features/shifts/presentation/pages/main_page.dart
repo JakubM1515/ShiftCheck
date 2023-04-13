@@ -58,8 +58,8 @@ class MainPage extends ConsumerWidget {
                     onPressed: () {
                       try {
                         ref.read(shiftUseCase).undoShiftDelete(index, shift);
-                        ShowSnackBar()
-                            .buildSuccessSnackBar(_scaffoldKey.currentState!.context, 'Shift added');
+                        ShowSnackBar().buildSuccessSnackBar(
+                            _scaffoldKey.currentState!.context, 'Shift added');
                       } catch (e) {
                         ShowSnackBar().buildErrorSnackBar(context);
                       }
@@ -105,6 +105,13 @@ class MainPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    ref.listen(shouldEndMotnh, (previous, next) {
+      if (next == true) {
+        ShowSnackBar().buildSuccessSnackBar(
+            context, 'Month just ended! You can see results in history');
+        ref.read(shouldEndMotnh.notifier).update((state) => false);
+      }
+    });
     return Scaffold(
       key: _scaffoldKey,
       drawer: const NavDrawer(),

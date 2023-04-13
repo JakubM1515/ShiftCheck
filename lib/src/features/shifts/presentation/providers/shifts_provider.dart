@@ -8,16 +8,21 @@ final shiftsProvider =
   return ShiftsProvider();
 });
 
+final shouldEndMotnh = StateProvider(
+  (ref) => false,
+);
+
 final fetchShifts = FutureProvider.autoDispose<List<Shift>>(
-  (ref) {
+  (ref) async {
     ref.listen(shiftsProvider, (previous, next) {});
+    var endMonth = await ref.read(shiftUseCase).checkLastMonthShiftsExist();
+    endMonth ? ref.read(shouldEndMotnh.notifier).update((state) => true) : null;
     return ref.read(shiftUseCase).getShifts();
   },
 );
 
 class ShiftsProvider extends StateNotifier<List<Shift>> {
   ShiftsProvider() : super([]);
-  
 
   Future<void> addShift(Shift shift) async {
     state = [...state, shift]

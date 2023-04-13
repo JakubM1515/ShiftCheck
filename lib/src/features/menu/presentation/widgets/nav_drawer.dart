@@ -36,7 +36,9 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: const FaIcon(FontAwesomeIcons.clockRotateLeft),
             title: const Text('History'),
-            onTap: () {},
+            onTap: () {
+              context.pushNamed('history');
+            },
           ),
           const Divider(),
           ListTile(

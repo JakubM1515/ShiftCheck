@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import '../../../../../shared/models/shift.dart';
 
 abstract class ShiftsDataSource {
@@ -5,4 +7,5 @@ abstract class ShiftsDataSource {
   String addShift({required Shift shift});
   void updateShift({required Shift shift});
   void deleteShift({required Shift shift});
+  Future<bool> checkIfLastMonthShiftsExists();
 }

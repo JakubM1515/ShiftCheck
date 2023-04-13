@@ -68,10 +68,13 @@ class _AddOrEditShiftModalBottomSheetState
   }
 
   void _pickDate() async {
+    var currentDate = DateTime.now();
     DateTime? pickedDate = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
+      initialDate: currentDate,
+      // firstDate: DateTime(currentDate.year, currentDate.month, 1),
+      // lastDate: DateTime(currentDate.year, currentDate.month + 1, 0),
+      firstDate: DateTime(2001),
       lastDate: DateTime(2101),
     );
     if (pickedDate != null) {

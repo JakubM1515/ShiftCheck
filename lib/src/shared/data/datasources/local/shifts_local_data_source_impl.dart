@@ -5,8 +5,10 @@ import 'package:shift_check/src/shared/data/datasources/local/shifts_local_data_
 class SettingsLocalDataSourceImpl extends SettingsLocalDataSource {
   @override
   double getSalary() {
-    var value = Settings.getValue(Constants.salaryKey, defaultValue: 0) ?? 0;
-    return value.toDouble();
+    double value =
+        Settings.getValue(Constants.salaryKey, defaultValue: 0) ??
+            0;
+    return value;
   }
 
   @override

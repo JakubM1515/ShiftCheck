@@ -1,4 +1,3 @@
-
 import '../../../../shared/data/datasources/local/shifts_local_data_source.dart';
 import '../../../../shared/models/shift.dart';
 import '../../domain/repositories/shifts_repository.dart';
@@ -40,6 +39,15 @@ class ShiftsRepositoryImpl extends ShiftsRepository {
   void deleteShift({required Shift shift}) {
     try {
       shiftsDataSource.deleteShift(shift: shift);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> checkIfLastMonthShiftsExist() async {
+    try {
+      return await shiftsDataSource.checkIfLastMonthShiftsExists();
     } catch (e) {
       rethrow;
     }

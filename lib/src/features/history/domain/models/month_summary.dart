@@ -26,15 +26,15 @@ class MonthSummary {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'date': date.millisecondsSinceEpoch,
+      'date': date.toIso8601String(),
       'shifts': shifts.map((x) => x.toMap()).toList(),
     };
   }
 
   factory MonthSummary.fromMap(Map<String, dynamic> map) {
     return MonthSummary(
-      date: DateTime.fromMillisecondsSinceEpoch(map['date'] as int),
-      shifts: List<Shift>.from((map['shifts'] as List<int>).map<Shift>((x) => Shift.fromMap(x as Map<String,dynamic>),),),
+      date: DateTime.parse(map['date']),
+      shifts: List<Shift>.from((map['shifts'] as List).map<Shift>((x) => Shift.fromMap(x as Map<String,dynamic>),),),
     );
   }
 
