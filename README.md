@@ -6,6 +6,7 @@ App allows to track your work shifts. You can add them, edit or delete. User can
 - Riverpod
 - Firebase
 - SharedPreferences
+- GoRouter
 
 ## IN DEVELOPMENT
 
