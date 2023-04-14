@@ -30,7 +30,7 @@ class MainPage extends ConsumerWidget {
                     itemCount: shifts.length,
                     itemBuilder: (context, index) {
                       final shift = shifts[index];
-                      return _buildDismissible(shift, ref, context, index);
+                      return _buildDismissible(shift, ref, context, index).animate(effects: Animations.listViewAnimation(index));
                     },
                   )
                 : const EmptyRefreshableList(message: 'No shifts added'),

@@ -50,7 +50,7 @@ class HistoryPage extends ConsumerWidget {
           ),
           trailing: const FaIcon(FontAwesomeIcons.arrowRight),
         ),
-      ),
+      ).animate(effects: Animations.listViewAnimation(index)),
     );
   }
 

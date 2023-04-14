@@ -15,4 +15,11 @@ class Animations {
     const FadeEffect(),
     SlideEffect(duration: 200.ms)
   ];
+
+  static List<Effect<dynamic>> listViewAnimation(int index) {
+    return <Effect>[
+      FadeEffect(duration: (200 + index * 100).ms),
+      const SlideEffect(begin: Offset(0, -1),curve: Curves.easeInOut)
+    ];
+  }
 }

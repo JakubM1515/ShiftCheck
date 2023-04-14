@@ -23,13 +23,14 @@ class HistoryDetailPage extends StatelessWidget {
           child: ListView.builder(
             itemCount: summary.shifts.length,
             itemBuilder: (context, index) => Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-              child: ShiftCard(
-                shift: summary.shifts[index],
-                toEdit: false,
-              ),
-            ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                child: ShiftCard(
+                  shift: summary.shifts[index],
+                  toEdit: false,
+                ).animate(
+                  effects: Animations.listViewAnimation(index),
+                )),
           ),
         ),
       ),
