@@ -9,6 +9,11 @@ App allows to track your work shifts. You can add them, edit or delete. User can
 - GoRouter
 - Clean Architecture
 
-## IN DEVELOPMENT
+## Features:
+- Adding, Editing and Deleting Shifts
+- Months shifts history
+- Statistics of the current month
+- Changing app theme
+- Ability to set constant salary per hour and currency
 
 
