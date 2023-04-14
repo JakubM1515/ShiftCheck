@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shift_check/src/features/history/domain/module/month_summary_provider.dart';
 
 import '../../../../shared/models/shift.dart';
 import '../../domain/module/shift_provider.dart';
@@ -15,7 +16,8 @@ final shouldEndMotnh = StateProvider(
 final fetchShifts = FutureProvider.autoDispose<List<Shift>>(
   (ref) async {
     ref.listen(shiftsProvider, (previous, next) {});
-    var endMonth = await ref.read(shiftUseCase).checkLastMonthShiftsExist();
+    var endMonth =
+        await ref.read(monthSummaryUseCase).checkAndMaybeCreateSummary();
     endMonth ? ref.read(shouldEndMotnh.notifier).update((state) => true) : null;
     return ref.read(shiftUseCase).getShifts();
   },

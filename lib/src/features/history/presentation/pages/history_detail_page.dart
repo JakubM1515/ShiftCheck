@@ -11,7 +11,8 @@ class HistoryDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text( '${DateFormat('MMMM').format(summary.date)} ${summary.date.year}'),
+        title: Text(
+            '${DateFormat('MMMM').format(summary.date)} ${summary.date.year}'),
       ),
       body: SafeArea(
         child: Scrollbar(
@@ -20,7 +21,10 @@ class HistoryDetailPage extends StatelessWidget {
             itemBuilder: (context, index) => Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-              child: ShiftCard(shift: summary.shifts[index]),
+              child: ShiftCard(
+                shift: summary.shifts[index],
+                toEdit: false,
+              ),
             ),
           ),
         ),

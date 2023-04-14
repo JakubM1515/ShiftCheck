@@ -44,12 +44,5 @@ class ShiftsRepositoryImpl extends ShiftsRepository {
     }
   }
 
-  @override
-  Future<bool> checkIfLastMonthShiftsExist() async {
-    try {
-      return await shiftsDataSource.checkIfLastMonthShiftsExists();
-    } catch (e) {
-      rethrow;
-    }
-  }
+
 }

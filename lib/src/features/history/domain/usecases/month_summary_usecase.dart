@@ -6,9 +6,21 @@ class MonthSummaryUseCase {
   final MonthSummaryRepository _repo;
 
   Future<List<MonthSummary>> getSummaries() async {
-    return await _repo.getMonthSummaries()
-      ..sort(
-        (a, b) => b.date.compareTo(a.date),
-      );
+    try {
+      return await _repo.getMonthSummaries()
+        ..sort(
+          (a, b) => b.date.compareTo(a.date),
+        );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<bool> checkAndMaybeCreateSummary() async {
+    try {
+      return await _repo.checkAndMaybeCreateSummary();
+    } catch (e) {
+      return false;
+    }
   }
 }

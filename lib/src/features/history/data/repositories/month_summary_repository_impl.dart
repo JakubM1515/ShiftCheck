@@ -10,4 +10,9 @@ class MonthSummaryRepositoryImpl extends MonthSummaryRepository {
   Future<List<MonthSummary>> getMonthSummaries() async {
     return await _dataSource.getMonthSummaries();
   }
+
+  @override
+  Future<bool> checkAndMaybeCreateSummary() async {
+    return await _dataSource.checkAndMaybeCreateSummary();
+  }
 }

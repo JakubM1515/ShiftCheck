@@ -51,14 +51,6 @@ class ShiftUseCase {
     }
   }
 
-  Future<bool> checkLastMonthShiftsExist() async {
-    try {
-      return await _shiftsRepository.checkIfLastMonthShiftsExist();
-    } catch (e) {
-      rethrow;
-    }
-  }
-
   void editShift(Shift shift) {
     try {
       _shiftsRepository.updateShift(shift: shift);

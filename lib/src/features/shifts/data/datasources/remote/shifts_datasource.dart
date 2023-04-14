@@ -6,5 +6,4 @@ abstract class ShiftsDataSource {
   String addShift({required Shift shift});
   void updateShift({required Shift shift});
   void deleteShift({required Shift shift});
-  Future<bool> checkIfLastMonthShiftsExists();
 }

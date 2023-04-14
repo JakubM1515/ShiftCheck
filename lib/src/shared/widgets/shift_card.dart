@@ -6,31 +6,33 @@ import '../models/shift.dart';
 import '../../features/shifts/presentation/widgets/add_or_edit_shift_modal_bottom_sheet.dart';
 
 class ShiftCard extends StatelessWidget {
-  const ShiftCard({
-    Key? key,
-    required this.shift,
-  }) : super(key: key);
+  final bool toEdit;
+  const ShiftCard({Key? key, required this.shift, required this.toEdit})
+      : super(key: key);
 
   final Shift shift;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => showModalBottomSheet(
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
-        ),
-        context: context,
-        builder: (context) => Padding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: AddOrEditShiftModalBottomSheet(
-            shift: shift,
-          ),
-        ),
-      ),
+      onTap: toEdit
+          ? () => showModalBottomSheet(
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30.0),
+                      topRight: Radius.circular(30.0)),
+                ),
+                context: context,
+                builder: (context) => Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom),
+                  child: AddOrEditShiftModalBottomSheet(
+                    shift: shift,
+                  ),
+                ),
+              )
+          : () {},
       child: Card(
         color: Theme.of(context).colorScheme.surface,
         child: Column(
@@ -70,7 +72,8 @@ class ShiftCard extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Text('End time: ${Constants.timeFormat.format(shift.endTime)}'),
+                      Text(
+                          'End time: ${Constants.timeFormat.format(shift.endTime)}'),
                     ],
                   ),
                 ),

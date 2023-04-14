@@ -82,7 +82,7 @@ class MainPage extends ConsumerWidget {
             ),
           ),
         ),
-        child: ShiftCard(shift: shift),
+        child: ShiftCard(shift: shift, toEdit: true,),
       ),
     );
   }
