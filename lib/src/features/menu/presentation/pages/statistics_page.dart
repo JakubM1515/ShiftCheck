@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:intl/intl.dart';
@@ -6,6 +7,7 @@ import 'package:shift_check/src/core/constants/constants.dart';
 import 'package:shift_check/src/features/shifts/presentation/providers/shifts_provider.dart';
 
 import '../../../../core/functions/functions.dart';
+import '../../../../shared/animations/animations.dart';
 import '../../../shifts/domain/models/shift.dart';
 
 class StatisticsPage extends ConsumerStatefulWidget {
@@ -16,8 +18,6 @@ class StatisticsPage extends ConsumerStatefulWidget {
 }
 
 class _StatisticsPageState extends ConsumerState<StatisticsPage> {
-
-
   Padding _buildTitle(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
@@ -123,7 +123,8 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
     var shifts = ref.watch(shiftsProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Statistics'),
+        title: const Text('Statistics')
+            .animate(effects: Animations.appBarTitleAnimation),
       ),
       body: SafeArea(
         child: Column(
@@ -135,7 +136,8 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
             _buildTotalHours(context, shifts),
             _buildMoneyEarned(context, shifts),
             _buildMeanShiftTime(context, shifts),
-          ],
+          ].animate(
+              interval: 100.ms, effects: Animations.contentColumnAnimation),
         ),
       ),
     );

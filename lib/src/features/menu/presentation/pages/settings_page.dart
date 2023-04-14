@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shift_check/src/features/menu/domain/module/settings_provider.dart';
 
 import '../../../../core/constants/constants.dart';
+import '../../../../shared/animations/animations.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -24,7 +26,7 @@ class SettingsPage extends StatelessWidget {
               _buildAppThemeSettings(),
             ],
           ),
-        ],
+        ].animate(interval: 100.ms,effects: Animations.contentColumnAnimation),
       ),
     ]);
   }
@@ -96,13 +98,14 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: const Text('Settings')
+            .animate(effects: Animations.appBarTitleAnimation),
       ),
       body: SafeArea(
         child: Column(
           children: [
             _buildGeneralSettings(context),
-          ],
+          ]
         ),
       ),
     );

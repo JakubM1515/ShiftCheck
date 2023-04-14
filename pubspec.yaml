@@ -35,6 +35,7 @@ dependencies:
   flex_color_scheme: ^6.1.2
   flutter:
     sdk: flutter
+  flutter_animate: ^4.1.1+1
   flutter_riverpod: ^2.3.4
   flutter_settings_screens: ^0.3.3-null-safety+2
   font_awesome_flutter: ^10.4.0

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -9,6 +10,7 @@ import 'package:shift_check/src/shared/widgets/empty_refreshable_list.dart';
 
 import 'package:shift_check/src/shared/widgets/on_error_widget.dart';
 
+import '../../../../shared/animations/animations.dart';
 import '../../domain/module/month_summary_provider.dart';
 
 class HistoryPage extends ConsumerWidget {
@@ -59,7 +61,7 @@ class HistoryPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text(
           'History',
-        ),
+        ).animate(effects: Animations.appBarTitleAnimation),
       ),
       body: SafeArea(
         child: summariesData.when(

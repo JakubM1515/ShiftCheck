@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
 import 'package:shift_check/src/features/history/domain/models/month_summary.dart';
 import 'package:shift_check/src/features/shifts/presentation/widgets/shift_card.dart';
+
+import '../../../../shared/animations/animations.dart';
 
 class HistoryDetailPage extends StatelessWidget {
   final MonthSummary summary;
@@ -12,7 +15,8 @@ class HistoryDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            '${DateFormat('MMMM').format(summary.date)} ${summary.date.year}'),
+                '${DateFormat('MMMM').format(summary.date)} ${summary.date.year}')
+            .animate(effects: Animations.appBarTitleAnimation),
       ),
       body: SafeArea(
         child: Scrollbar(

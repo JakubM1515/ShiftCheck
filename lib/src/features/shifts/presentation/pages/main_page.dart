@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shift_check/src/features/shifts/domain/models/shift.dart';
@@ -7,6 +8,7 @@ import 'package:shift_check/src/features/shifts/presentation/widgets/add_or_edit
 import 'package:shift_check/src/shared/widgets/on_error_widget.dart';
 import 'package:shift_check/src/features/menu/presentation/widgets/nav_drawer.dart';
 
+import '../../../../shared/animations/animations.dart';
 import '../../domain/module/shift_provider.dart';
 import '../providers/shifts_provider.dart';
 import '../../../../shared/widgets/empty_refreshable_list.dart';
@@ -82,7 +84,10 @@ class MainPage extends ConsumerWidget {
             ),
           ),
         ),
-        child: ShiftCard(shift: shift, toEdit: true,),
+        child: ShiftCard(
+          shift: shift,
+          toEdit: true,
+        ),
       ),
     );
   }
@@ -116,7 +121,8 @@ class MainPage extends ConsumerWidget {
       key: _scaffoldKey,
       drawer: const NavDrawer(),
       appBar: AppBar(
-        title: const Text('Check Your Shifts'),
+        title: const Text('Check Your Shifts')
+            .animate(effects: Animations.appBarTitleAnimation),
       ),
       body: Consumer(
         builder: (context, ref, child) {
