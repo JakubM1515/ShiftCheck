@@ -16,7 +16,7 @@ App allows to track your work shifts. You can add them, edit or delete. User can
 - Changing app theme
 - Ability to set constant salary per hour and currency
 
-## Short video representing app ui and funcionalities:
+## Short video representing Shift Check UI and funcionalities:
 
 
 
