@@ -4,10 +4,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 class Animations {
   static var appBarTitleAnimation = <Effect>[
     const FadeEffect(
-      duration: Duration(milliseconds: 200),
+      duration: Duration(milliseconds: 400),
     ),
     const SlideEffect(
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 300),
       begin: Offset(1, 0),
     )
   ];
