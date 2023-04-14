@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../shared/models/shift.dart';
+import '../models/shift.dart';
 import '../../presentation/providers/shifts_provider.dart';
 import '../repositories/shifts_repository.dart';
 

@@ -1,4 +1,4 @@
-import '../../../../shared/models/shift.dart';
+import '../models/shift.dart';
 
 abstract class ShiftsRepository {
   Future<List<Shift>> getShifts();

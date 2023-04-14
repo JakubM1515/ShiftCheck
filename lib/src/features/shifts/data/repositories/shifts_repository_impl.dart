@@ -1,5 +1,5 @@
-import '../../../../shared/data/datasources/local/shifts_local_data_source.dart';
-import '../../../../shared/models/shift.dart';
+import '../../../menu/data/datasources/local/shifts_local_data_source.dart';
+import '../../domain/models/shift.dart';
 import '../../domain/repositories/shifts_repository.dart';
 import '../datasources/remote/shifts_datasource.dart';
 

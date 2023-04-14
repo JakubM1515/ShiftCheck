@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants/constants.dart';
-import '../../core/functions/functions.dart';
-import '../models/shift.dart';
-import '../../features/shifts/presentation/widgets/add_or_edit_shift_modal_bottom_sheet.dart';
+import '../../../../core/constants/constants.dart';
+import '../../../../core/functions/functions.dart';
+import '../../domain/models/shift.dart';
+import 'add_or_edit_shift_modal_bottom_sheet.dart';
 
 class ShiftCard extends StatelessWidget {
   final bool toEdit;
@@ -83,12 +83,12 @@ class ShiftCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                          'Total hours: ${Functions().roundDoubleToString((shift.endTime.difference(shift.startTime).inMinutes / 60), 2)}'),
+                          'Total hours: ${Functions.roundDoubleToString((shift.endTime.difference(shift.startTime).inMinutes / 60), 2)}'),
                       const SizedBox(
                         height: 10,
                       ),
                       Text(
-                          'Money earned: ${Functions().roundDoubleToString(shift.moneyEarned, 2)} ${shift.currency}'),
+                          'Money earned: ${Functions.roundDoubleToString(shift.moneyEarned, 2)} ${shift.currency}'),
                     ],
                   ),
                 ),

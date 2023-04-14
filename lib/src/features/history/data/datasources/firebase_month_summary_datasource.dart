@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../../core/constants/constants.dart';
-import '../../../../shared/models/shift.dart';
+import '../../../shifts/domain/models/shift.dart';
 import '../../domain/models/month_summary.dart';
 import 'month_summary_datasource.dart';
 

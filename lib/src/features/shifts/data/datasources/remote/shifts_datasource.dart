@@ -1,5 +1,5 @@
 
-import '../../../../../shared/models/shift.dart';
+import '../../../domain/models/shift.dart';
 
 abstract class ShiftsDataSource {
   Future<List<Shift>> getShifts();

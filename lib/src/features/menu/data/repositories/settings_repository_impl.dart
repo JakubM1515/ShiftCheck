@@ -1,4 +1,4 @@
-import 'package:shift_check/src/shared/data/datasources/local/shifts_local_data_source.dart';
+import 'package:shift_check/src/features/menu/data/datasources/local/shifts_local_data_source.dart';
 
 import '../../domain/repositories/settings_repository.dart';
 

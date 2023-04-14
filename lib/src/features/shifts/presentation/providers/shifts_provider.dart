@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shift_check/src/features/history/domain/module/month_summary_provider.dart';
 
-import '../../../../shared/models/shift.dart';
+import '../../domain/models/shift.dart';
 import '../../domain/module/shift_provider.dart';
 
 final shiftsProvider =

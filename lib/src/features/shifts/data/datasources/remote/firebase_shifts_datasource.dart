@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shift_check/src/features/shifts/data/datasources/remote/shifts_datasource.dart';
 
 import '../../../../../core/constants/constants.dart';
-import '../../../../../shared/models/shift.dart';
+import '../../../domain/models/shift.dart';
 
 class FirebaseShiftsDatasource extends ShiftsDataSource {
   final shiftsCollection = Constants.shiftsCollection;

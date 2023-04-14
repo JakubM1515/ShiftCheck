@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shift_check/src/core/constants/constants.dart';
-import 'package:shift_check/src/shared/domain/module/settings_provider.dart';
-import 'package:shift_check/src/shared/models/shift.dart';
+import 'package:shift_check/src/features/menu/domain/module/settings_provider.dart';
+import 'package:shift_check/src/features/shifts/domain/models/shift.dart';
 import 'package:shift_check/src/features/shifts/presentation/providers/shifts_provider.dart';
 import 'package:shift_check/src/shared/widgets/functions/show_snack_bar.dart';
 
@@ -53,7 +53,7 @@ class _AddOrEditShiftModalBottomSheetState
   void _initShiftData() {
     title.text = widget.shift!.title;
     currency.text = widget.shift!.currency;
-    salary.text = Functions().roundDoubleToString(widget.shift!.salary, 2);
+    salary.text = Functions.roundDoubleToString(widget.shift!.salary, 2);
     startTimeController.text =
         Constants.timeFormat.format(widget.shift!.startTime);
     endTimeController.text = Constants.timeFormat.format(widget.shift!.endTime);
@@ -105,7 +105,7 @@ class _AddOrEditShiftModalBottomSheetState
       }
       final newShift = Shift(
         id: (ref.read(shiftsProvider).length + 1).toString(),
-        salary: Functions().roundDouble(
+        salary: Functions.roundDouble(
             double.parse(
               salary.text.replaceAll(',', '.'),
             ),
@@ -156,7 +156,7 @@ class _AddOrEditShiftModalBottomSheetState
               salary.text.replaceAll(',', '.'),
             ),
         currency: currency.text,
-        salary: Functions().roundDouble(
+        salary: Functions.roundDouble(
             double.parse(
               salary.text.replaceAll(',', '.'),
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shift_check/src/shared/data/datasources/local/shifts_local_data_source_impl.dart';
+import 'package:shift_check/src/features/menu/data/datasources/local/shifts_local_data_source_impl.dart';
 
 import '../../data/datasources/remote/firebase_shifts_datasource.dart';
 import '../../data/repositories/shifts_repository_impl.dart';

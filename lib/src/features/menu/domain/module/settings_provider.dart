@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shift_check/src/shared/domain/usecases/settings_usecase.dart';
+import 'package:shift_check/src/features/menu/domain/usecases/settings_usecase.dart';
 
 import '../../data/datasources/local/shifts_local_data_source_impl.dart';
 import '../../data/repositories/settings_repository_impl.dart';

@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import '../../../../shared/models/shift.dart';
+import '../../../shifts/domain/models/shift.dart';
 
 class MonthSummary {
   final DateTime date;

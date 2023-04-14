@@ -6,7 +6,7 @@ import 'package:shift_check/src/core/constants/constants.dart';
 import 'package:shift_check/src/features/shifts/presentation/providers/shifts_provider.dart';
 
 import '../../../../core/functions/functions.dart';
-import '../../../../shared/models/shift.dart';
+import '../../../shifts/domain/models/shift.dart';
 
 class StatisticsPage extends ConsumerStatefulWidget {
   const StatisticsPage({super.key});
@@ -50,7 +50,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
   }
 
   Padding _buildTotalHours(BuildContext context, List<Shift> shifts) {
-    var totalHours = Functions().calcTotalHours(shifts);
+    var totalHours = Functions.calcTotalHours(shifts);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
@@ -61,7 +61,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
-            '${Functions().roundDoubleToString(totalHours, 2)} h',
+            '${Functions.roundDoubleToString(totalHours, 2)} h',
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
@@ -73,7 +73,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
   }
 
   Padding _buildMoneyEarned(BuildContext context, List<Shift> shifts) {
-    var totalMoney = Functions().calcTotalMoney(shifts);
+    var totalMoney = Functions.calcTotalMoney(shifts);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
@@ -84,7 +84,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
-            '${Functions().roundDoubleToString(totalMoney, 2)} ${Settings.getValue(Constants.currencyKey, defaultValue: 'PLN')}',
+            '${Functions.roundDoubleToString(totalMoney, 2)} ${Settings.getValue(Constants.currencyKey, defaultValue: 'PLN')}',
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!
@@ -96,7 +96,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
   }
 
   Padding _buildMeanShiftTime(BuildContext context, List<Shift> shifts) {
-    var meanShiftTime = Functions().calcMeanShifTime(shifts);
+    var meanShiftTime = Functions.calcMeanShifTime(shifts);
 
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
@@ -107,7 +107,7 @@ class _StatisticsPageState extends ConsumerState<StatisticsPage> {
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
-            '${Functions().roundDoubleToString(meanShiftTime, 2)} h',
+            '${Functions.roundDoubleToString(meanShiftTime, 2)} h',
             style: Theme.of(context)
                 .textTheme
                 .bodyLarge!

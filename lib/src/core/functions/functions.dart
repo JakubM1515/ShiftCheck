@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:intl/intl.dart';
 
-import '../../shared/models/shift.dart';
+import '../../features/shifts/domain/models/shift.dart';
 
 class Functions {
   static final Functions _singleton = Functions._internal();
@@ -13,18 +13,18 @@ class Functions {
 
   Functions._internal();
 
-  double roundDouble(double val, int places) {
+  static double roundDouble(double val, int places) {
     num mod = pow(10.0, places);
     return ((val * mod).round().toDouble() / mod);
   }
 
-  String roundDoubleToString(double value, int places) {
+  static String roundDoubleToString(double value, int places) {
     final mod = pow(10.0, places);
     return NumberFormat("0.##")
         .format(((value * mod).round().toDouble() / mod));
   }
 
-  double calcTotalHours(List<Shift> shifts) {
+  static double calcTotalHours(List<Shift> shifts) {
     if (shifts.isNotEmpty) {
       double sum = 0;
       for (var shift in shifts) {
@@ -37,7 +37,7 @@ class Functions {
     }
   }
 
-  double calcMeanShifTime(List<Shift> shifts) {
+  static double calcMeanShifTime(List<Shift> shifts) {
     if (shifts.isNotEmpty) {
       double sum = 0;
       for (var shift in shifts) {
@@ -50,7 +50,7 @@ class Functions {
     }
   }
 
-  double calcTotalMoney(List<Shift> shifts) {
+  static double calcTotalMoney(List<Shift> shifts) {
     if (shifts.isNotEmpty) {
       double sum = 0;
       for (var shift in shifts) {

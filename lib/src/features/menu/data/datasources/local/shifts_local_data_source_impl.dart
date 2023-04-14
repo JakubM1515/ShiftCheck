@@ -1,6 +1,6 @@
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:shift_check/src/core/constants/constants.dart';
-import 'package:shift_check/src/shared/data/datasources/local/shifts_local_data_source.dart';
+import 'package:shift_check/src/features/menu/data/datasources/local/shifts_local_data_source.dart';
 
 class SettingsLocalDataSourceImpl extends SettingsLocalDataSource {
   @override
